@@ -1,0 +1,354 @@
+html,
+body {
+    height: 100%;
+}
+
+.contentMain {
+    height: calc(100% - 95px);
+    overflow: auto;
+    padding: 2rem;
+}
+
+.participant {
+    margin-bottom: 10px;
+    margin-right: 5px;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-rows: auto 20px;
+    grid-template-rows: auto 20px;
+}
+
+.participant div {
+    text-align: center;
+}
+
+.participant div video {
+    background-color: #eee;
+    border: 1px solid black;
+}
+
+.participant div video:not(.trackZoomed) {
+    width: 100%;
+}
+
+.participantZoomed {
+    width: 100%;
+    height: calc(100% - 5px);
+    -ms-grid-rows: auto 30px;
+    grid-template-rows: auto 30px;
+}
+
+.participantHidden {
+    display: none;
+}
+
+.trackZoomed {
+    width: 100%;
+    height: 100%;
+}
+
+.participantZoomed div video:not(.trackZoomed) {
+    display: none;
+}
+
+.participantHidden div video {
+    display: none;
+}
+
+.participantHidden .label {
+    display: none;
+}
+
+.participantZoomed .label {
+    margin-top: 8px;
+}
+
+/* chat section */
+
+#root.withChat #chat {
+    width: calc(100% - 10px);
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-rows: auto 30px;
+    grid-template-rows: auto 30px;
+    border-left: 1px solid black;
+    padding: 5px;
+}
+
+#root:not(withChat) #chat {
+    display: none;
+}
+
+#chat #chat-scroll {
+    overflow: auto;
+}
+
+#chat #chat-content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 1em;
+    max-height: 1px;
+}
+
+.containerMyResource {
+    position: relative;
+}
+
+.labelOfMyResource {
+    background-color: #0000006b;
+    color: #EEF3AD;
+    font-size: 13px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    padding: .5rem 3rem;
+    border-radius: 20px;
+}
+
+p#count {
+    color: #76C00D;
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 20px;
+    margin-bottom: 5px;
+}
+
+/* start style of controllers */
+.btnIconsStyle {
+    background-color: #000000b8;
+    border: 1px solid #000000b8;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+div#conOfDevicesContreoll {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: .8rem 3rem;
+    background: #00000036;
+    border-top: 1px solid #000;
+    width: 100%;
+    height: 70px;
+}
+
+.conOfControlls {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#conOfDevicesContreoll button {
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+button.disconnectedBtn {
+    background: #600101;
+    color: #fff;
+    padding: 5px 16px;
+    font-size: 13px;
+    border-color: #600101;
+    border-radius: 15px;
+}
+
+.shareScreen {
+    background: #76C00D;
+    color: #fff;
+    padding: 5px 16px;
+    font-size: 13px;
+    border-color: #76C00D;
+    border-radius: 15px;
+}
+
+button:focus {
+    outline: 0;
+}
+
+/* End style of controllers */
+.containerOfparticipant {
+    position: relative;
+}
+
+
+/* start style of shareScreen mode */
+
+.screenSharingMode .containerOfparticipant .participant>div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+
+.screenSharingMode #containerOfparticipantAppend video {
+    width: 93%;
+
+}
+
+
+.screenSharingMode #containerOfparticipantAppend video:first-of-type,
+.screenSharingMode .containerMyResource video {
+    width: 160px !important;
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    height: 90px;
+    border: 0;
+}
+
+.screenSharingMode #containerOfparticipantAppend video:first-of-type {
+    /* margin-right: 30px; */
+    right: 10%;
+}
+
+.screenSharingMode .conOtherRes,
+.screenSharingMode .containerMyResource,
+.screenSharingMode .containerOfparticipant {
+    position: static;
+}
+
+.screenSharingMode .comMyRes {
+    position: static;
+    width: 0% !important;
+    -webkit-box-flex: 0;
+    -ms-flex: 0;
+    flex: 0;
+    max-width: 0;
+}
+
+.screenSharingMode div#container {
+    width: 100%;
+    max-width: 100%;
+}
+
+.screenSharingMode .label.labelOfMyResource {
+    display: none !important;
+}
+
+.screenSharingMode .participant div {
+    text-align: right;
+}
+.screenSharingMode .mutedVideo {
+  display:  none;
+}
+/* End style of shareScreen mode */
+
+
+/* start style of Modal Alert mode */
+
+.modalAlert .modal-content {
+    background: #FFF2CF;
+    border-radius: 0;
+    border-color: #FCEABB;
+    text-align: center;
+}
+
+.modalAlert .iconCon {
+    color: #836A27;
+    font-size: 43px;
+}
+
+.modalAlert .conText {
+    color: #836A27;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.mutedVideo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.d-none-cus.mutedVideo {
+    display: none;
+}
+
+/* End style of Modal Alert mode */
+
+@media screen and (max-width: 1200px) and (orientation:landscape) {
+    .screenSharingMode #containerOfparticipantAppend video:first-of-type, .screenSharingMode .containerMyResource video {
+        width: 60px !important;
+    }
+
+}
+@media screen and (max-width: 768px) and (orientation:Portrait)  {
+    .screenBtnLineHeight {
+        line-height: 12px;
+    }
+
+    .screenSharingMode #containerOfparticipantAppend video:first-of-type,
+    .screenSharingMode .containerMyResource video {
+        position: static;
+
+        -webkit-transform: initial;
+        -ms-transform: initial;
+        transform: initial
+    }
+    .screenSharingMode #containerOfparticipantAppend video:first-of-type {
+        margin-right: initial;
+        margin-bottom: 30px;
+    }
+    .screenSharingMode .containerOfparticipant .participant>div {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+    }
+    .screenSharingMode .comMyRes {
+        position: static;
+        width: initial;
+
+        -ms-flex: 0 0 70%;
+        flex: 0 0 70%;
+        max-width: 70%;
+    }
+}
+
+
+
+

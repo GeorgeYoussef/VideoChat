@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Chat</title>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+
+</head>
+
+<body>
+    <form>
+        <!-- <label for="username">Name: </label> -->
+        <!-- <input type="text" name=”username” id="username"> -->
+
+        <!-- <button id="toggle_chat" disabled>Toggle chat</button> -->
+    </form>
+    <div id="root" class="contentMain">
+        <div id="container" class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-2 col-md-3 col-8 comMyRes">
+                    <div class="containerMyResource">
+                        <div id="local" class="participant">
+                            <div class="appendLocal">
+                                <div class="mutedVideo d-none-cus">
+                                    <!-- <i class="fas fa-user"></i> -->
+                                </div>
+                            </div>
+                            <div class="label labelOfMyResource">Me</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10 col-md-9 col-12 conOtherRes">
+                    <div class="containerOfparticipant" id="containerOfparticipantAppend"></div>
+                </div>
+            </div>
+            <!-- more participants will be added dynamically here -->
+
+        </div>
+    </div>
+    <!-- <div id="paaendCameraTypes">
+        <select id="select"></select>
+    </div>
+    <button id="buttonMedia">media controol</button> -->
+
+    <button id="button-preview">Preview My Camera</button>
+    <select id="video-devices"></select>
+    
+    <p id="count">Disconnected.</p>
+    <div id="conOfDevicesContreoll">
+        <button id="join_leave" class="disconnectedBtn screenBtnLineHeight">Join call</button>
+        <button id="share_screen" class="shareScreen screenBtnLineHeight" disabled>Share screen</button>
+    </div>
+
+    <div class="modalAlert modal fade" id="modalAlert">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <div class="conAlert">
+                        <div class="iconCon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="conText">
+                            you cannot join room Please connect the administrator.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../static/js/twilio-video.min.js"></script>
+    <!-- <script src="https://media.twiliocdn.com/sdk/js/conversations/releases/1.0.0/twilio-conversations.min.js"></script> -->
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/app.js"></script>
+</body>
+
+</html>

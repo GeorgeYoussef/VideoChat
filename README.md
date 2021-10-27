@@ -16,15 +16,15 @@ To install the application on your system follow these steps:
 7. Navigate to *http://localhost:5000* on your web browser. Connecting to the service from a phone or another computer may not work, as browsers require a secure (HTTPS) connection to give access to the media APIs. In that case, I suggest you use [ngrok](https://ngrok.com/) to give your application a temporary HTTPS URL.
 
 ## Installation Project
-$ python -m venv venv
-$ source venv/bin/activate
-(venv) $ pip install twilio flask python-dotenv
+1. $ python -m venv venv
+2. $ source venv/bin/activate
+3. (venv) $ pip install twilio flask python-dotenv
 
-$ python -m venv venv
-$ venv\Scripts\activate
-(venv) $ pip install twilio flask python-dotenv
+4. $ python -m venv venv
+5. $ venv\Scripts\activate
+6. (venv) $ pip install twilio flask python-dotenv
 
 
-$ FLASK_ENV=development flask run
-$ set FLASK_ENV=development
-$ flask run
+7. $ FLASK_ENV=development flask run
+8. $ set FLASK_ENV=development
+9. $ flask run

@@ -1,8 +1,7 @@
-# flask-twilio-video
+# Video Chat Twilio
 
 This is a simple web-based video conferencing application using Flask and Twilio Programmable Video.
 
-![Screenshot](screenshot.jpg)
 
 ## Installation Instructions
 

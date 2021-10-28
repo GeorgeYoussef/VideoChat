@@ -464,6 +464,7 @@ function updateAudioDevice(event) {
       // log(localParticipant.identity + ' added track: ' + localVideoTrack.kind);
       const previewContainer = document.getElementById('local-media');
       attachTracks([localVideoTrack], previewContainer);
+      $("#modalSetting").modal("hide");
     });
   }
 }
@@ -487,6 +488,8 @@ function updateVideoDevice(event) {
       // log(localParticipant.identity + ' added track: ' + localVideoTrack.kind);
       const previewContainer = document.getElementById('local-media');
       attachTracks([localVideoTrack], previewContainer);
+      $("#modalSetting").modal("hide");
+
     });
   }
 }

@@ -26,11 +26,14 @@
                 <div class="col-lg-2 col-md-3 col-8 comMyRes">
                     <div class="containerMyResource">
                         <div id="local" class="participant">
-                            <div class="appendLocal">
+                            <div id="local-media">
                                 <div class="mutedVideo d-none-cus">
                                     <!-- <i class="fas fa-user"></i> -->
                                 </div>
                             </div>
+                            <!-- <button id="button-preview">Preview My Camera</button> -->
+                            <!-- <select id="video-devices"></select>
+                            <select id="audio-devices"></select> -->
                             <div class="label labelOfMyResource">Me</div>
                         </div>
                     </div>
@@ -43,18 +46,13 @@
 
         </div>
     </div>
-    <!-- <div id="paaendCameraTypes">
-        <select id="select"></select>
-    </div>
-    <button id="buttonMedia">media controol</button> -->
-
-    <button id="button-preview">Preview My Camera</button>
-    <select id="video-devices"></select>
-    
     <p id="count">Disconnected.</p>
     <div id="conOfDevicesContreoll">
         <button id="join_leave" class="disconnectedBtn screenBtnLineHeight">Join call</button>
         <button id="share_screen" class="shareScreen screenBtnLineHeight" disabled>Share screen</button>
+        <button id="settingBtn" class="settingBtn btnIconsStyle"  data-toggle="modal" data-target="#modalSetting">
+            <i class="fas fa-cog"></i>
+        </button>
     </div>
 
     <div class="modalAlert modal fade" id="modalAlert">
@@ -76,9 +74,32 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modalSetting">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Setting Video chat</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                <div class="modal-body">
+                    <div class="ConSetting">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Video Devices</label>
+                            <select class="form-control" id="video-devices"></select>
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">Audio Devices</label>
+                            <select id="audio-devices" class="form-control"></select>
+                          </div>
+                    </div>
+                </div>
 
-    <script src="../static/js/twilio-video.min.js"></script>
-    <!-- <script src="https://media.twiliocdn.com/sdk/js/conversations/releases/1.0.0/twilio-conversations.min.js"></script> -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://media.twiliocdn.com/sdk/js/video/releases/2.7.2/twilio-video.min.js"></script>
+    <script src="https://media.twiliocdn.com/sdk/js/conversations/releases/1.0.0/twilio-conversations.min.js"></script>
     <script src="../static/js/jquery.min.js"></script>
     <script src="../static/js/popper.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>

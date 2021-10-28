@@ -30,6 +30,8 @@ for windows
 6. (venv) $ pip install twilio flask python-dotenv
 
 
+run project
+
 7. $ FLASK_ENV=development flask run
 8. $ set FLASK_ENV=development
 9. $ flask run

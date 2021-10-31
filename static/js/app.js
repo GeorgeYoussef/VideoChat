@@ -4,7 +4,6 @@ const button = document.getElementById("join_leave");
 const shareScreen = document.getElementById("share_screen");
 const settingBtn = document.getElementById("settingBtn");
 
-
 // const toggleChat = document.getElementById('toggle_chat');
 const container = document.getElementById("container");
 const containerOfparticipant = document.getElementById(
@@ -95,9 +94,9 @@ function toogleCamera(button) {
     $("#cameraToogleBtn").html(videoIcon);
     button.value = "ON";
     $(".mutedVideo").removeClass("d-none-cus");
-    room.localParticipant.videoTracks.forEach(publication => {
-        publication.track.disable();
-      });
+    room.localParticipant.videoTracks.forEach((publication) => {
+      publication.track.disable();
+    });
   } else {
     videoIcon = videoEnabledIcon;
     $("#cameraToogleBtn").html(videoIcon);
@@ -160,8 +159,10 @@ function connectButtonHandler() {
       })
       .catch(() => {
         // alert("Connection failed. Is the backend running?");
-        $('#modalAlert').modal('show');
-        setTimeout(function(){ $('#modalAlert').modal('hide'); }, 3000);
+        $("#modalAlert").modal("show");
+        setTimeout(function() {
+          $("#modalAlert").modal("hide");
+        }, 3000);
         button.innerHTML = "Join call";
         button.disabled = false;
       });
@@ -172,7 +173,6 @@ function connectButtonHandler() {
     shareScreen.innerHTML = "Share screen";
     shareScreen.disabled = true;
     settingBtn.disabled = true;
-
   }
 }
 
@@ -189,20 +189,21 @@ function connect(username) {
         // join video call
         data = _data;
         return Twilio.Video.connect(data.token, {
-            room: room,
-            audio: true,
-            video: true,
-          });
+          room: room,
+          audio: true,
+          video: true,
+        });
       })
       .then((_room) => {
         room = _room;
         room.on("participantConnected", participantConnected);
         loadDevicesControlls(room);
+        $("#settingBtn").removeClass("d-none-cus");
         navigator.mediaDevices.enumerateDevices().then(gotDevices);
-        const select = document.getElementById('video-devices');
-        const selectAudio = document.getElementById('audio-devices');
-        select.addEventListener('change', updateVideoDevice);
-        selectAudio.addEventListener('change', updateAudioDevice);
+        const select = document.getElementById("video-devices");
+        const selectAudio = document.getElementById("audio-devices");
+        select.addEventListener("change", updateVideoDevice);
+        selectAudio.addEventListener("change", updateAudioDevice);
 
         room.participants.forEach(participantConnected);
         room.on("participantDisconnected", participantDisconnected);
@@ -225,16 +226,16 @@ function updateParticipantCount() {
   else count.innerHTML = room.participants.size + 1 + " participants online.";
 }
 function tidyUp(room) {
-    return function (event) {
-      if (event.persisted) {
-        return;
-      }
-      if (room) {
-        room.disconnect();
-        room = null;
-      }
-    };
-  }
+  return function(event) {
+    if (event.persisted) {
+      return;
+    }
+    if (room) {
+      room.disconnect();
+      room = null;
+    }
+  };
+}
 function participantConnected(participant) {
   let participantDiv = document.createElement("div");
   participantDiv.setAttribute("id", participant.sid);
@@ -254,10 +255,8 @@ function participantConnected(participant) {
     if (publication.isSubscribed) trackSubscribed(tracksDiv, publication.track);
   });
   participant.on("trackSubscribed", (track) => {
-    trackSubscribed(tracksDiv, track)
-
-  }
-  );
+    trackSubscribed(tracksDiv, track);
+  });
   participant.on("trackUnsubscribed", trackUnsubscribed);
   updateParticipantCount();
 }
@@ -265,9 +264,9 @@ function participantConnected(participant) {
 function participantDisconnected(participant) {
   document.getElementById(participant.sid).remove();
   updateParticipantCount();
-//   room.localParticipant.tracks.forEach(function(track) {
-//     track.stop();
-//   });
+  //   room.localParticipant.tracks.forEach(function(track) {
+  //     track.stop();
+  //   });
   window.location.href = "https://www.google.com/";
   room.disconnect();
 }
@@ -291,7 +290,7 @@ function trackUnsubscribed(track) {
   });
 }
 function shareScreenMode() {
-    console.log("screenTrack", screenTrack);
+  console.log("screenTrack", screenTrack);
   let isShareScreenExist = $("#containerOfparticipantAppend video:eq(1)");
   if (isShareScreenExist.length > 0) $("body").addClass("screenSharingMode");
   else $("body").removeClass("screenSharingMode");
@@ -322,8 +321,7 @@ function disconnect() {
 }
 
 function shareScreenHandler() {
-
-//   event.preventDefault();
+  //   event.preventDefault();
   if (!screenTrack) {
     navigator.mediaDevices
       .getDisplayMedia()
@@ -398,27 +396,26 @@ function detachParticipantTracks(participant) {
   detachTracks(tracks);
 }
 
-
 function gotDevices(mediaDevices) {
-  const select = document.getElementById('video-devices');
-  const selectAudio = document.getElementById('audio-devices');
-  select.innerHTML = '';
-  selectAudio.innerHTML = '';
-  select.appendChild(document.createElement('option'));
-  selectAudio.appendChild(document.createElement('option'));
+  const select = document.getElementById("video-devices");
+  const selectAudio = document.getElementById("audio-devices");
+  select.innerHTML = "";
+  selectAudio.innerHTML = "";
+  select.appendChild(document.createElement("option"));
+  selectAudio.appendChild(document.createElement("option"));
   let count = 1;
   let countAudio = 1;
-  mediaDevices.forEach(mediaDevice => {
-    if (mediaDevice.kind === 'videoinput') {
-      const option = document.createElement('option');
+  mediaDevices.forEach((mediaDevice) => {
+    if (mediaDevice.kind === "videoinput") {
+      const option = document.createElement("option");
       option.value = mediaDevice.deviceId;
       const label = mediaDevice.label || `Camera ${count++}`;
       const textNode = document.createTextNode(label);
       option.appendChild(textNode);
       select.appendChild(option);
     }
-    if (mediaDevice.kind === 'audioinput') {
-      const option = document.createElement('option');
+    if (mediaDevice.kind === "audioinput") {
+      const option = document.createElement("option");
       option.value = mediaDevice.deviceId;
       const label = mediaDevice.label || `audio ${countAudio++}`;
       const textNode = document.createTextNode(label);
@@ -437,32 +434,37 @@ function attachTracks(tracks, container) {
 }
 // Detach the Tracks from the DOM.
 function detachTracks() {
-$("#local-media video").remove();
+  $("#local-media video").remove();
 }
 function stopTracks(tracks) {
   tracks.forEach(function(track) {
-    if (track) { track.stop(); }
-  })
+    if (track) {
+      track.stop();
+    }
+  });
 }
 function updateAudioDevice(event) {
   const select = event.target;
   const localParticipant = room.localParticipant;
-  if (select.value !== '') {
+  if (select.value !== "") {
     const tracks = Array.from(localParticipant.audioTracks.values()).map(
       function(trackPublication) {
         return trackPublication.track;
       }
     );
+
     localParticipant.unpublishTracks(tracks);
+
     // log(localParticipant.identity + ' removed track: ' + tracks[0].kind);
-    // detachTracks(tracks);
+    detachTracks(tracks);
+
     stopTracks(tracks);
     Twilio.Video.createLocalVideoTrack({
-      deviceId: { exact: select.value }
+      audio: true,
+      video: { deviceId: select.value },
     }).then(function(localVideoTrack) {
       localParticipant.publishTrack(localVideoTrack);
-      // log(localParticipant.identity + ' added track: ' + localVideoTrack.kind);
-      const previewContainer = document.getElementById('local-media');
+      const previewContainer = document.getElementById("local-media");
       attachTracks([localVideoTrack], previewContainer);
       $("#modalSetting").modal("hide");
     });
@@ -471,7 +473,7 @@ function updateAudioDevice(event) {
 function updateVideoDevice(event) {
   const select = event.target;
   const localParticipant = room.localParticipant;
-  if (select.value !== '') {
+  if (select.value !== "") {
     const tracks = Array.from(localParticipant.videoTracks.values()).map(
       function(trackPublication) {
         return trackPublication.track;
@@ -482,14 +484,13 @@ function updateVideoDevice(event) {
     detachTracks(tracks);
     stopTracks(tracks);
     Twilio.Video.createLocalVideoTrack({
-      deviceId: { exact: select.value }
+      deviceId: { exact: select.value },
     }).then(function(localVideoTrack) {
       localParticipant.publishTrack(localVideoTrack);
       // log(localParticipant.identity + ' added track: ' + localVideoTrack.kind);
-      const previewContainer = document.getElementById('local-media');
+      const previewContainer = document.getElementById("local-media");
       attachTracks([localVideoTrack], previewContainer);
       $("#modalSetting").modal("hide");
-
     });
   }
 }

@@ -4,7 +4,7 @@ body {
 }
 
 .contentMain {
-    height: calc(100% - 95px);
+    height: calc(100% - 97px);
     overflow: auto;
     padding: 2rem;
 }
@@ -29,6 +29,7 @@ body {
 
 .participant div video:not(.trackZoomed) {
     width: 100%;
+    max-height: 80vh;
 }
 
 .participantZoomed {
@@ -301,7 +302,9 @@ button:focus {
 .d-none-cus.mutedVideo {
     display: none;
 }
-
+.d-none-cus {
+    display: none;
+}
 /* End style of Modal Alert mode */
 
 @media screen and (max-width: 1200px) and (orientation:landscape) {

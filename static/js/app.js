@@ -19,6 +19,7 @@ let room;
 let chat;
 let conv;
 let screenTrack;
+let isCameraMuted = false;
 
 const audioEnabledIcon = `
   <svg xmlns="https://www.w3.org/2000/svg" class="iconButtonMik" width="12" height="17" viewBox="0 0 12 17">
@@ -97,15 +98,16 @@ function toogleCamera(button) {
     room.localParticipant.videoTracks.forEach((publication) => {
       publication.track.disable();
     });
+    isCameraMuted = true;
   } else {
     videoIcon = videoEnabledIcon;
     $("#cameraToogleBtn").html(videoIcon);
     button.value = "OFF";
     $(".mutedVideo").addClass("d-none-cus");
-
     room.localParticipant.videoTracks.forEach((track) => {
       track.track.enable();
     });
+    isCameraMuted = false;
   }
 }
 function toogleAudio(button) {
@@ -405,6 +407,8 @@ function gotDevices(mediaDevices) {
   selectAudio.appendChild(document.createElement("option"));
   let count = 1;
   let countAudio = 1;
+  console.log("mediaDevices", mediaDevices);
+  
   mediaDevices.forEach((mediaDevice) => {
     if (mediaDevice.kind === "videoinput") {
       const option = document.createElement("option");
@@ -455,17 +459,12 @@ function updateAudioDevice(event) {
 
     localParticipant.unpublishTracks(tracks);
 
-    // log(localParticipant.identity + ' removed track: ' + tracks[0].kind);
-    detachTracks(tracks);
-
     stopTracks(tracks);
-    Twilio.Video.createLocalVideoTrack({
+    Twilio.Video.createLocalAudioTrack({
       audio: true,
       video: { deviceId: select.value },
     }).then(function(localVideoTrack) {
       localParticipant.publishTrack(localVideoTrack);
-      const previewContainer = document.getElementById("local-media");
-      attachTracks([localVideoTrack], previewContainer);
       $("#modalSetting").modal("hide");
     });
   }
@@ -480,21 +479,28 @@ function updateVideoDevice(event) {
       }
     );
     localParticipant.unpublishTracks(tracks);
-    // log(localParticipant.identity + ' removed track: ' + tracks[0].kind);
     detachTracks(tracks);
     stopTracks(tracks);
     Twilio.Video.createLocalVideoTrack({
       deviceId: { exact: select.value },
     }).then(function(localVideoTrack) {
       localParticipant.publishTrack(localVideoTrack);
-      // log(localParticipant.identity + ' added track: ' + localVideoTrack.kind);
       const previewContainer = document.getElementById("local-media");
       attachTracks([localVideoTrack], previewContainer);
       $("#modalSetting").modal("hide");
     });
   }
 }
-
+function settingBtnFun() {
+  if(isCameraMuted) {
+    $("#video-devices").attr('disabled', 'disabled');
+    $(".videoControllDisapilities").show();
+  } else {
+    $("#video-devices").removeAttr('disabled');
+    $(".videoControllDisapilities").hide();
+  }
+  $("#modalSetting").modal("show")
+}
 addLocalVideo();
 connectButtonHandler();
 button.addEventListener("click", function(event) {
@@ -502,5 +508,8 @@ button.addEventListener("click", function(event) {
   connectButtonHandler();
 });
 shareScreen.addEventListener("click", shareScreenHandler);
-// toggleChat.addEventListener('click', toggleChatHandler);
-// chatInput.addEventListener('keyup', onChatInputKey);
+settingBtn.addEventListener("click", settingBtnFun);
+
+
+
+

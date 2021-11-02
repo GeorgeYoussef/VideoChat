@@ -357,5 +357,9 @@ button:focus {
 }
 
 
-
-
+.videoControllDisapilities {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #f00;
+    font-weight: bold;
+}

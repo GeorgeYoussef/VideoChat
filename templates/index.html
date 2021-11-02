@@ -50,7 +50,7 @@
     <div id="conOfDevicesContreoll">
         <button id="join_leave" class="disconnectedBtn screenBtnLineHeight">Join call</button>
         <button id="share_screen" class="shareScreen screenBtnLineHeight" disabled>Share screen</button>
-        <button id="settingBtn" class="settingBtn btnIconsStyle d-none-cus"  data-toggle="modal" data-target="#modalSetting">
+        <button id="settingBtn" class="settingBtn btnIconsStyle d-none-cus">
             <i class="fas fa-cog"></i>
         </button>
     </div>
@@ -64,10 +64,14 @@
                   </div>
                 <div class="modal-body">
                     <div class="ConSetting">
-                        <div class="form-group">
-                            <label for="video-devices">Video Devices</label>
-                            <select class="form-control" id="video-devices"></select>
-                          </div>
+                        <div class="conVideoControll">
+                            <div class="form-group">
+                                <label for="video-devices">Video Devices</label>
+                                <select class="form-control" id="video-devices"></select>
+                              </div>
+                              <div class="videoControllDisapilities"> Please Open the camera to can change </div>
+                        </div>
+
                           <div class="form-group">
                             <label for="audio-devices">Audio Devices</label>
                             <select id="audio-devices" class="form-control"></select>

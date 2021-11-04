@@ -255,6 +255,7 @@ function participantConnected(participant) {
 
   participant.tracks.forEach((publication) => {
     if (publication.isSubscribed) trackSubscribed(tracksDiv, publication.track);
+    
   });
   participant.on("trackSubscribed", (track) => {
     trackSubscribed(tracksDiv, track);
@@ -448,6 +449,7 @@ function stopTracks(tracks) {
   });
 }
 function updateAudioDevice(event) {
+
   const select = event.target;
   const localParticipant = room.localParticipant;
   if (select.value !== "") {
@@ -484,6 +486,7 @@ function updateVideoDevice(event) {
     Twilio.Video.createLocalVideoTrack({
       deviceId: { exact: select.value },
     }).then(function(localVideoTrack) {
+
       localParticipant.publishTrack(localVideoTrack);
       const previewContainer = document.getElementById("local-media");
       attachTracks([localVideoTrack], previewContainer);

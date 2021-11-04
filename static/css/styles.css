@@ -314,6 +314,9 @@ button:focus {
 
 }
 @media screen and (max-width: 768px) and (orientation:Portrait)  {
+    .screenSharingMode .participant div {
+        text-align: center;
+    }
     .screenBtnLineHeight {
         line-height: 12px;
     }
